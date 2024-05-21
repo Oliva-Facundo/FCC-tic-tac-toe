@@ -12,17 +12,23 @@ function App() {
     setModo(null);
     setPlayerChoise(null);
     resetGameFromStorage();
-  }
-  
+  };
+
   return (
     <>
       {!modo && (
         <div>
-          <h1 style={{ textAlign: "center" }}>Bienvenido</h1>
+          <h1 style={{ textAlign: "center" }}>Bienvenido a mi Ta te ti</h1>
           <p style={{ textAlign: "center", margin: "1rem 0" }}>
-            Como desea jugar?
+            ¿Como desea jugar?
           </p>
-          <div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
             <button className="btn" onClick={() => setModo("computer")}>
               1 jugador
             </button>
@@ -32,37 +38,8 @@ function App() {
           </div>
         </div>
       )}
+
       {modo && (
-        <div style={{ display: playerChoise ? "none" : "block" }}>
-          <h3 style={{ textAlign: "center" }}>Jugador 1 selecciona tu turno</h3>
-          <p style={{ textAlign: "center", color: "gray" }}>
-            (El turno del jugador 2 se generara segun la eleccion del jugador 1)
-          </p>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <button
-              className="btn"
-              onClick={() => setPlayerChoise(TURNS.x)}
-              type="button"
-            >
-              Jugar como X
-            </button>
-            <button
-              className="btn"
-              onClick={() => setPlayerChoise(TURNS.o)}
-              type="button"
-            >
-              Jugar como O
-            </button>
-          </div>
-        </div>
-      )}
-      {playerChoise && (
         <>
           <button
             className="btn"
@@ -71,10 +48,37 @@ function App() {
           >
             Volver al Inicio
           </button>
-          <Game players={playerChoise} modo={modo} />
+          <div style={{ display: playerChoise ? "none" : "block" }}>
+            <h3 style={{ textAlign: "center" }}>
+              Jugador 1 selecciona tu turno
+            </h3>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <button
+                className="btn"
+                onClick={() => setPlayerChoise(TURNS.x)}
+                type="button"
+              >
+                Jugar como X
+              </button>
+              <button
+                className="btn"
+                onClick={() => setPlayerChoise(TURNS.o)}
+                type="button"
+              >
+                Jugar como O
+              </button>
+            </div>
+          </div>
         </>
       )}
-      {/* <MouseFollow /> */}
+
+      {playerChoise && <Game players={playerChoise} modo={modo} />}
     </>
   );
 }

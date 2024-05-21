@@ -49,7 +49,7 @@ const Game = ({ players, modo }) => {
     if (modo === "computer" && turn !== players && !winner) {
       const availableSpots = board.map((spot, i) => (spot === null ? i : null)).filter(v => v !== null);
       const randomSpot = availableSpots[Math.floor(Math.random() * availableSpots.length)];
-      setTimeout(()=> updateBoard(randomSpot), 2000);
+      setTimeout(()=> updateBoard(randomSpot), 1000);
       }
       
   }, [board, modo, players, turn, winner]);
@@ -57,6 +57,7 @@ const Game = ({ players, modo }) => {
   return (
       <main className="board">
         <h1>Tic Tac Toe</h1>
+        <p><strong>Modo:</strong> {modo}</p>
         <button onClick={resetGame}>Reiniciar</button>
         <section className="game">
           <Board board={board} updateBoard={updateBoard} />
